@@ -1,0 +1,31 @@
+﻿
+@{
+}
+<div class="col-sm-12 d-flex justify-content-center align-items-center" style="padding:6em 0px">
+    <div class="col-sm-6">
+        <img src="~/Inventory.jpg" />
+    </div>
+    <div class="col-sm-6">
+        <div class="col-sm-12">
+            <form asp-controller="Login" asp-action="Login" method="post">
+                <div class="col-sm-12 text-center">
+                    <h2>Login</h2>
+                </div>
+                <div class="col-sm-12">
+                    <label>Email</label>
+                    <input type="email" name="Email" class="form-control" required>
+                </div>
+                <div class="col-sm-12">
+                    <label>Password</label>
+                    <input type="password" name="Password" class="form-control" required>
+                </div>
+                <div class="col-sm-12 text-center mt-2">
+                    <button type="submit" class="btn btn-outline-success">Login</button>
+                </div>
+                <span style="color:red"> @ViewBag.error </span>
+            </form>
+        </div>
+
+    </div>
+
+</div>

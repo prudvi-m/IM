@@ -1,0 +1,30 @@
+﻿@model Warehouse;
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<div class="col-sm-12">
+    <form method="post" asp-action="SaveWarehouse" asp-controller="Home">
+        <input type="number" name="ID" value="@Model.ID" hidden />
+        <div class="col-sm-12">
+            <label> Email:</label>
+            <input type="text" name="Email" value="@Model.Email" class="form-control" required />
+        </div>
+        <div class="col-sm-12">
+            <label> Phone:</label>
+            <input type="text" name="Phone" value="@Model.Phone" class="form-control" required />
+        </div>
+        <div class="col-sm-12">
+            <label> Location:</label>
+            <input type="text" asp-for="Location" name="Location" value="@Model.Location" class="form-control" required />
+            <span asp-validation-for="Location" style="color:red"></span>
+        </div>
+        <div class="col-sm-12">
+            <label> Contact Person:</label>
+            <input type="text" name="ContactPerson" value="@Model.ContactPerson" class="form-control" required />
+        </div>
+        <div class="col-sm-12 text-center mt-3">
+            <button type="submit" class="btn btn-success">@ViewBag.btnval</button>
+            <a asp-controller="Home" class="btn btn-outline-dark" asp-action="Warehouse">Cancel</a>
+        </div>
+    </form>
+</div>

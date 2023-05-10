@@ -1,0 +1,18 @@
+﻿@model Category;
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<div class="col-sm-12">
+    <form method="post" asp-action="SaveCategory" asp-controller="Home">
+        <input type="number" name="Id" value="@Model.Id" hidden />
+        <div class="col-sm-12">
+            <label> Category Name:</label>
+            <input type="text" asp-for="CategoryName" name="CategoryName" value="@Model.CategoryName" class="form-control" required />
+        </div>
+        <span asp-validation-for="CategoryName" style="color:red"></span>
+        <div class="col-sm-12 text-center mt-3">
+            <button type="submit" class="btn btn-success">@ViewBag.btnval</button>
+            <a asp-controller="Home" class="btn btn-outline-dark" asp-action="Category">Cancel</a>
+        </div>
+        </form>
+</div>

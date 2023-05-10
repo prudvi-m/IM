@@ -1,0 +1,51 @@
+﻿@model IList<Warehouse>;
+
+<div class="col-sm-12">
+    <div class="col-sm-12">
+        <h4 class="text-danger">@ViewBag.err</h4>
+    </div>
+    <div class="col-sm-12">
+        <a asp-controller="Home" asp-action="AddEditWarehouse">Add Warehouse</a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Location</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>ContactPerson</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count > 0)
+            {
+                @foreach (var warehouse in Model)
+                {
+                    <tr>
+                        <td>@warehouse.ID</td>
+                        <td>@warehouse.Location</td>
+                        <td>@warehouse.Email</td>
+                        <td>@warehouse.Phone</td>
+                        <td>@warehouse.ContactPerson</td>
+                        <td>
+                            <a asp-controller="Home" asp-action="AddEditWarehouse" asp-route-id="@warehouse.ID">Edit</a>
+                        </td>
+                        <td>
+                            <a asp-controller="Home" asp-action="Deletewarehouse" asp-route-id="@warehouse.ID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr><td colspan="6" class="text-center"> No data to show.</td></tr>
+            }
+
+
+        </tbody>
+    </table>
+
+</div>

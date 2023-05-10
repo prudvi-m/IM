@@ -1,0 +1,41 @@
+﻿@model IList<Account>;
+
+<div class="=col-sm-12">
+    <div class="col-sm-12">
+        <a asp-controller="Home" asp-action="Account" asp-route-id="0" >Add Account</a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Role</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var data in Model){
+                <tr>
+                    <td>@data.FirstName</td>
+                    <td>@data.LastName</td>
+                    <td>@data.Email</td>
+                    <td>@data.Password</td>
+                    <td>@data.Role.Name</td>
+                    <td>
+                        <a asp-controller="Home" asp-action="Account"
+                       asp-route-id="@data.ID">Edit</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Home" asp-action="DeleteAccount"
+                       asp-route-id="@data.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+

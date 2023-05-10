@@ -1,0 +1,90 @@
+﻿@using Microsoft.AspNetCore.Http
+@model ViewDetails;
+
+
+<div class="col-sm-12 d-flex">
+
+    <div class="col-sm-6" style="padding:20px 20px">
+        <table class="table table-bordered">
+
+            
+                <tbody>
+                    <tr>
+                        <td colspan="2" class="text-center">Account Details</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">First Name</td>
+                        <td>@Model.Account.FirstName</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">Last Name</td>
+                        <td>@Model.Account.LastName</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">Email</td>
+                        <td>@Model.Account.Email</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">Role</td>
+                        @if(Model.Account.RoleID > 0){
+                        <td>
+                            @Model.Account.Role.Name</td>
+                        }
+                        else{
+                            <td></td>
+                        }
+                    </tr>
+                </tbody>
+            
+        </table>
+
+    </div>
+    <div class="col-sm-6">
+        <form asp-action="AddEditAccount" asp-controller="Home" method="post">
+            <input type="number" name="ID" value="@Model.Account.ID" hidden />
+            <div class="col-sm-12">
+                <label>First Name:</label>
+                <input type="text" class="form-control" name="FirstName" value="@Model.Account.FirstName" required />
+            </div>
+            <div class="col-sm-12">
+                <label>last Name:</label>
+                <input type="text" class="form-control" name="LastName" value="@Model.Account.LastName" required />
+            </div>
+            <div class="col-sm-12">
+                <label>Email:</label>
+                <input type="text" class="form-control" name="Email" value="@Model.Account.Email" required />
+            </div>
+            <div class="col-sm-12">
+                <label>Password:</label>
+                <input type="password" name="Password" class="form-control" required />
+            </div>
+
+            @if(Context.Session.GetString("RoleID") == "2"){
+
+                <div class="col-sm-12">
+                    <label>Role: </label>
+                    <select name="RoleID" class="form-control">
+                        @foreach (var role in Model.Roles)
+                        {
+                            if(role.Id == Model.Account.RoleID){
+                                <option value="@role.Id" selected>@role.Name</option>
+                            }
+                            else{
+                            <option value="@role.Id">@role.Name</option>
+                            }
+                        }
+                    </select>
+
+                </div>
+            }
+
+
+            <br />
+            <div class="col-sm-12 text-center">
+                <button class="btn btn-success" type="submit">@ViewBag.btn</button>
+            </div>
+
+        </form>
+    </div>
+
+</div>

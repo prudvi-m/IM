@@ -1,0 +1,72 @@
+﻿@model InventoryView;
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+<div class="col-sm-12">
+    <form method="post" asp-action="AddEditProduct" asp-controller="Home">
+        <input type="number" name="ProductId" value="@Model.Product.ProductId" hidden />
+        <div class="col-sm-12">
+            <label> Product Name:</label>
+            <input type="text" name="ProductName" value="@Model.Product.ProductName" class="form-control" required />
+        </div>
+        <div class="col-sm-12">
+            <label>Product Code:</label>
+            <input type="text" asp-for="Product.ProductCode" name="ProductCode" value="@Model.Product.ProductCode" class="form-control" required />
+            <span asp-validation-for="@Model.Product.ProductCode" style="color:red"></span>
+        </div>
+        <div class="col-sm-12">
+            <label>Category:</label>
+            <select id="category" name="CategoryID" class="form-control" value="@Model.Product.CategoryID" required>
+                <option id="0" >Select Category</option>
+                @foreach(var category in Model.Categories){
+                    @if(category.Id == Model.Product.CategoryID){
+                        <option id="@category.Id" value="@category.Id" selected> @category.CategoryName</option>
+                    }else{
+                        <option id="@category.Id" value="@category.Id"> @category.CategoryName</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="col-sm-12">
+            <label>Product Description:</label>
+            <input type="text" name="Description" value="@Model.Product.Description" class="form-control" required />
+        </div>
+        <div class="col-sm-12">
+            <label>Price:</label>
+            <input type="text" name="Price" value="@Model.Product.Price" class="form-control" required />
+        </div>
+        <div class="col-sm-12">
+            <label>Warehouse:</label>
+            <select id="warehouse" name="WarehouseID" value="@Model.Product.WarehouseID" class="form-control" required>
+                <option id="0">Select Location</option>
+                @foreach (var warehouse in Model.Warehouses)
+                {
+                    @if(warehouse.ID == Model.Product.WarehouseID){
+                        <option id="@warehouse.ID" value="@warehouse.ID" selected> @warehouse.Location</option>
+                    }
+                    else{
+                        <option id="@warehouse.ID" value="@warehouse.ID"> @warehouse.Location</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-sm-12">
+            <label>Vendor:</label>
+            <input type="text" name="Vendor" value="@Model.Product.Vendor" class="form-control" required />
+        </div>
+        <div class="col-sm-12">
+            <label>Inventory Quantity:</label>
+            <input type="number" name="Quantity" value="@Model.Product.Quantity" class="form-control" required max="100" min="0" />
+        </div>
+        <div class="col-sm-12 text-center mt-3">
+            <button type="submit" class="btn btn-success">@ViewBag.btnval</button>
+            <a asp-controller="Home" class="btn btn-outline-dark" asp-action="Index">Cancel</a>
+        </div>
+    </form>
+
+</div>
+
